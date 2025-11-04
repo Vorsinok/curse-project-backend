@@ -1,23 +1,27 @@
-import "dotenv/config.js";
 import app from "./app.js";
-import sequelize from "./config/db.js";
-import "./models/index.js";
+import sequelize from "./config/sequelize.js";
+import { ENV } from "./config/env.js";
+import "./models/User.js";
+import "./models/Item.js";
+import "./models/Inventory.js";
+import"./models/InventoryAccess.js"
 
-const PORT = process.env.PORT || 3001;
+
+const PORT = ENV.PORT || 3000;
 
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log("DB connected");
-    await sequelize.sync({ alter: true }); 
-    console.log("Models synchronized");
+    console.log("Connected to PostgreSQL (Neon)");
+
+
+    await sequelize.sync({ alter: true });
+    console.log("Database synced successfully");
 
     app.listen(PORT, () => {
-      console.log(`Server:  http://localhost:${PORT}`);
-      console.log(`Swagger: http://localhost:${PORT}/api-docs`);
+      console.log(`Server running on port ${PORT}`);
     });
-  } catch (err) {
-    console.error("Server start error:", err);
-    process.exit(1);
+  } catch (error) {
+    console.error("Database connection failed:", error);
   }
 })();
