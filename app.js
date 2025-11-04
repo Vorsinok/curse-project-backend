@@ -19,7 +19,8 @@ const app = express();
 const allowedOrigins = [
   process.env.CORS_ORIGIN || "http://localhost:3001",
   "http://127.0.0.1:3001",
-  "https://curse-project-frontend.vercel.app", 
+  "https://curse-project-frontend.vercel.app",
+  "https://curse-project-frontend-1tc9mv1zx-vorsinoks-projects.vercel.app", 
 ];
 
 app.use(
