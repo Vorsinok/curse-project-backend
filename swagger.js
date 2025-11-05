@@ -5,7 +5,7 @@ const swaggerSpec = {
     version: "1.0.0",
     description: "Auth, Users, Inventories, Items"
   },
-  servers: [{ url: process.env.BACKEND_URL || "http://localhost:3001" }],
+  servers: [{ url: process.env.BACKEND_URL}],
   paths: {
     "/api/auth/register": {
       post: {
